@@ -1,31 +1,33 @@
 // @ts-ignore
-import WalletConnectLogo from '../logos/walletconnect-circle.svg';
+import WalletConnectLogo from '../logos/walletconnect-circle.svg'
 // @ts-ignore
-import PortisLogo from '../logos/portis.svg';
+import PortisLogo from '../logos/portis.svg'
 // @ts-ignore
-import SquarelinkLogo from '../logos/squarelink.svg';
+import SquarelinkLogo from '../logos/squarelink.svg'
 // @ts-ignore
-import FortmaticLogo from '../logos/fortmatic.svg';
+import FortmaticLogo from '../logos/fortmatic.svg'
 // @ts-ignore
-import ArkaneLogo from '../logos/arkane.svg';
+import ArkaneLogo from '../logos/arkane.svg'
 // @ts-ignore
-import TorusLogo from '../logos/torus.svg';
+import TorusLogo from '../logos/torus.svg'
 // @ts-ignore
-import AuthereumLogo from '../logos/authereum.svg';
+import AuthereumLogo from '../logos/authereum.svg'
 // @ts-ignore
-import BurnerWalletLogo from '../logos/burnerwallet.png';
+import BurnerWalletLogo from '../logos/burnerwallet.png'
 // @ts-ignore
-import UniLoginLogo from '../logos/unilogin.svg';
+import UniLoginLogo from '../logos/unilogin.svg'
 // @ts-ignore
-import MEWwallet from '../logos/mewwallet.png';
+import MEWwallet from '../logos/mewwallet.png'
 // @ts-ignore
-import DcentWalletLogo from '../logos/dcentwallet.png';
+import DcentWalletLogo from '../logos/dcentwallet.png'
 // @ts-ignore
-import BitskiLogo from '../logos/bitski.svg';
+import BitskiLogo from '../logos/bitski.svg'
+// @ts-ignore
+import FrameLogo from '../logos/frame.svg'
 
-import { IProviderInfo } from '../../helpers';
+import { IProviderInfo } from '../../helpers'
 
-export * from '../injected';
+export * from '../injected'
 
 export const WALLETCONNECT: IProviderInfo = {
   id: 'walletconnect',
@@ -36,7 +38,7 @@ export const WALLETCONNECT: IProviderInfo = {
   package: {
     required: [['infuraId', 'rpc']],
   },
-};
+}
 
 export const PORTIS: IProviderInfo = {
   id: 'portis',
@@ -47,7 +49,7 @@ export const PORTIS: IProviderInfo = {
   package: {
     required: ['id'],
   },
-};
+}
 
 export const FORTMATIC: IProviderInfo = {
   id: 'fortmatic',
@@ -58,7 +60,7 @@ export const FORTMATIC: IProviderInfo = {
   package: {
     required: ['key'],
   },
-};
+}
 
 export const SQUARELINK: IProviderInfo = {
   id: 'squarelink',
@@ -69,7 +71,7 @@ export const SQUARELINK: IProviderInfo = {
   package: {
     required: ['id'],
   },
-};
+}
 
 export const TORUS: IProviderInfo = {
   id: 'torus',
@@ -77,7 +79,7 @@ export const TORUS: IProviderInfo = {
   logo: TorusLogo,
   type: 'web',
   check: 'isTorus',
-};
+}
 
 export const ARKANE: IProviderInfo = {
   id: 'arkane',
@@ -88,7 +90,7 @@ export const ARKANE: IProviderInfo = {
   package: {
     required: ['clientId'],
   },
-};
+}
 
 export const AUTHEREUM: IProviderInfo = {
   id: 'authereum',
@@ -96,7 +98,7 @@ export const AUTHEREUM: IProviderInfo = {
   logo: AuthereumLogo,
   type: 'web',
   check: 'isAuthereum',
-};
+}
 
 export const BURNERCONNECT: IProviderInfo = {
   id: 'burnerconnect',
@@ -104,7 +106,7 @@ export const BURNERCONNECT: IProviderInfo = {
   logo: BurnerWalletLogo,
   type: 'web',
   check: 'isBurnerProvider',
-};
+}
 
 export const UNILOGIN: IProviderInfo = {
   id: 'unilogin',
@@ -112,7 +114,7 @@ export const UNILOGIN: IProviderInfo = {
   logo: UniLoginLogo,
   check: 'isUniLogin',
   type: 'web',
-};
+}
 
 export const MEWCONNECT: IProviderInfo = {
   id: 'mewconnect',
@@ -123,7 +125,7 @@ export const MEWCONNECT: IProviderInfo = {
   package: {
     required: [['infuraId', 'rpc']],
   },
-};
+}
 
 export const DCENT: IProviderInfo = {
   id: 'dcentwallet',
@@ -134,7 +136,7 @@ export const DCENT: IProviderInfo = {
   package: {
     required: ['rpcUrl'],
   },
-};
+}
 
 export const BITSKI: IProviderInfo = {
   id: 'bitski',
@@ -145,4 +147,12 @@ export const BITSKI: IProviderInfo = {
   package: {
     required: ['clientId', 'callbackUrl'],
   },
-};
+}
+
+export const FRAME: IProviderInfo = {
+  id: 'frame',
+  name: 'Frame',
+  logo: FrameLogo,
+  type: 'web',
+  check: 'isFrameNative',
+}

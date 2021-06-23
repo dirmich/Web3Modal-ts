@@ -1,4 +1,4 @@
-import { ChainDataList } from '../helpers';
+import { ChainDataList } from '../helpers'
 
 export const CHAIN_DATA_LIST: ChainDataList = {
   1: {
@@ -205,4 +205,28 @@ export const CHAIN_DATA_LIST: ChainDataList = {
     network: 'callisto-testnet',
     networkId: 2,
   },
-};
+  137: {
+    chainId: 137,
+    chain: 'MATIC',
+    network: 'matic',
+    networkId: 137,
+  },
+  80001: {
+    chainId: 80001,
+    chain: 'MUMBAI',
+    network: 'mumbai',
+    networkId: 80001,
+  },
+  246529: {
+    chainId: 246529,
+    chain: 'ARTIS sigma1',
+    network: 'artis-s1',
+    networkId: 246529,
+  },
+  246785: {
+    chainId: 246785,
+    chain: 'ARTIS tau1',
+    network: 'artis-t1',
+    networkId: 246785,
+  },
+}

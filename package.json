@@ -1,5 +1,5 @@
 {
-  "name": "@highmaru/web3modal-ts",
+  "name": "web3modal-ts",
   "version": "1.0.0",
   "description": "Web3modal's provider layer abstraction for simple implementation of web3 wallet connections",
   "homepage": "https://github.com/dirmich/Web3Modal-ts",

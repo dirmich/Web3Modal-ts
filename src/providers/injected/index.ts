@@ -1,29 +1,33 @@
-import { IProviderInfo } from '../../helpers';
+import { IProviderInfo } from '../../helpers'
 
 // @ts-ignore
-import Web3DefaultLogo from '../logos/web3-default.svg';
+import Web3DefaultLogo from '../logos/web3-default.svg'
 // @ts-ignore
-import MetaMaskLogo from '../logos/metamask.svg';
+import MetaMaskLogo from '../logos/metamask.svg'
 // @ts-ignore
-import SafeLogo from '../logos/safe.svg';
+import SafeLogo from '../logos/safe.svg'
 // @ts-ignore
-import NiftyWalletLogo from '../logos/niftyWallet.png';
+import NiftyWalletLogo from '../logos/niftyWallet.png'
 // @ts-ignore
-import TrustLogo from '../logos/trust.svg';
+import TrustLogo from '../logos/trust.svg'
 // @ts-ignore
-import DapperLogo from '../logos/dapper.png';
+import DapperLogo from '../logos/dapper.png'
 // @ts-ignore
-import CoinbaseLogo from '../logos/coinbase.svg';
+import CoinbaseLogo from '../logos/coinbase.svg'
 // @ts-ignore
-import CipherLogo from '../logos/cipher.svg';
+import CipherLogo from '../logos/cipher.svg'
 // @ts-ignore
-import imTokenLogo from '../logos/imtoken.svg';
+import imTokenLogo from '../logos/imtoken.svg'
 // @ts-ignore
-import StatusLogo from '../logos/status.svg';
+import StatusLogo from '../logos/status.svg'
 // @ts-ignore
-import TokenaryLogo from '../logos/tokenary.png';
+import TokenaryLogo from '../logos/tokenary.png'
 // @ts-ignore
-import OperaLogo from '../logos/opera.svg';
+import OperaLogo from '../logos/opera.svg'
+// @ts-ignore
+import FrameLogo from '../logos/frame.svg'
+// @ts-ignore
+import LiqualityLogo from '../logos/liquality.png'
 
 export const FALLBACK: IProviderInfo = {
   id: 'injected',
@@ -31,7 +35,7 @@ export const FALLBACK: IProviderInfo = {
   logo: Web3DefaultLogo,
   type: 'injected',
   check: 'isWeb3',
-};
+}
 
 export const METAMASK: IProviderInfo = {
   id: 'injected',
@@ -39,7 +43,7 @@ export const METAMASK: IProviderInfo = {
   logo: MetaMaskLogo,
   type: 'injected',
   check: 'isMetaMask',
-};
+}
 
 export const SAFE: IProviderInfo = {
   id: 'injected',
@@ -47,7 +51,7 @@ export const SAFE: IProviderInfo = {
   logo: SafeLogo,
   type: 'injected',
   check: 'isSafe',
-};
+}
 
 export const NIFTY: IProviderInfo = {
   id: 'injected',
@@ -55,7 +59,7 @@ export const NIFTY: IProviderInfo = {
   logo: NiftyWalletLogo,
   type: 'injected',
   check: 'isNiftyWallet',
-};
+}
 
 export const DAPPER: IProviderInfo = {
   id: 'injected',
@@ -63,7 +67,7 @@ export const DAPPER: IProviderInfo = {
   logo: DapperLogo,
   type: 'injected',
   check: 'isDapper',
-};
+}
 
 export const OPERA: IProviderInfo = {
   id: 'injected',
@@ -71,7 +75,7 @@ export const OPERA: IProviderInfo = {
   logo: OperaLogo,
   type: 'injected',
   check: 'isOpera',
-};
+}
 
 export const TRUST: IProviderInfo = {
   id: 'injected',
@@ -79,7 +83,7 @@ export const TRUST: IProviderInfo = {
   logo: TrustLogo,
   type: 'injected',
   check: 'isTrust',
-};
+}
 
 export const COINBASE: IProviderInfo = {
   id: 'injected',
@@ -87,7 +91,7 @@ export const COINBASE: IProviderInfo = {
   logo: CoinbaseLogo,
   type: 'injected',
   check: 'isToshi',
-};
+}
 
 export const CIPHER: IProviderInfo = {
   id: 'injected',
@@ -95,7 +99,7 @@ export const CIPHER: IProviderInfo = {
   logo: CipherLogo,
   type: 'injected',
   check: 'isCipher',
-};
+}
 
 export const IMTOKEN: IProviderInfo = {
   id: 'injected',
@@ -103,7 +107,7 @@ export const IMTOKEN: IProviderInfo = {
   logo: imTokenLogo,
   type: 'injected',
   check: 'isImToken',
-};
+}
 
 export const STATUS: IProviderInfo = {
   id: 'injected',
@@ -111,7 +115,7 @@ export const STATUS: IProviderInfo = {
   logo: StatusLogo,
   type: 'injected',
   check: 'isStatus',
-};
+}
 
 export const TOKENARY: IProviderInfo = {
   id: 'injected',
@@ -119,4 +123,20 @@ export const TOKENARY: IProviderInfo = {
   logo: TokenaryLogo,
   type: 'injected',
   check: 'isTokenary',
-};
+}
+
+export const FRAMEINJECTED: IProviderInfo = {
+  id: 'injected',
+  name: 'Frame',
+  logo: FrameLogo,
+  type: 'injected',
+  check: 'isFrame',
+}
+
+export const LIQUALITY: IProviderInfo = {
+  id: 'injected',
+  name: 'Liquality',
+  logo: LiqualityLogo,
+  type: 'injected',
+  check: 'isLiquality',
+}

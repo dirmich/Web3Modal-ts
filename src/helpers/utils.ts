@@ -1,110 +1,105 @@
-import * as env from 'detect-browser';
+import * as env from 'detect-browser'
 
-import { CHAIN_DATA_LIST } from '../constants';
-import { providers, injected } from '../providers';
+import { CHAIN_DATA_LIST } from '../constants'
+import { providers, injected } from '../providers'
 import {
   IProviderInfo,
   IInjectedProvidersMap,
   ChainData,
-  ThemeColors,
   RequiredOption,
-} from './types';
+} from './types'
 
 export function checkInjectedProviders(): IInjectedProvidersMap {
   const result = {
     injectedAvailable: !!(window as any).ethereum || !!(window as any).web3,
-  };
+  }
   if (result.injectedAvailable) {
-    let fallbackProvider = true;
-    Object.values(injected).forEach(provider => {
-      const isAvailable = verifyInjectedProvider(provider.check);
+    let fallbackProvider = true
+    Object.values(injected).forEach((provider) => {
+      const isAvailable = verifyInjectedProvider(provider.check)
       if (isAvailable) {
-        result[provider.check] = true;
-        fallbackProvider = false;
+        result[provider.check] = true
+        fallbackProvider = false
       }
-    });
+    })
 
-    const browser = env.detect();
+    const browser = env.detect()
 
     if (browser && browser.name === 'opera') {
-      result[injected.OPERA.check] = true;
-      fallbackProvider = false;
+      result[injected.OPERA.check] = true
+      fallbackProvider = false
     }
 
     if (fallbackProvider) {
-      result[injected.FALLBACK.check] = true;
+      result[injected.FALLBACK.check] = true
     }
   }
 
-  return result;
+  return result
 }
 
 export function verifyInjectedProvider(check: string): boolean {
   return (window as any).ethereum
-    ? (window as any).ethereum[check] || ((window as any).web3 && (window as any).web3.currentProvider)
-      ? (window as any).web3
-        ? (window as any).web3.currentProvider[check]
-        : true
-      : false
-    : (window as any).web3 && (window as any).web3.currentProvider
-    ? (window as any).web3.currentProvider[check]
-    : false;
+    ? (window as any).ethereum[check]
+    : (window as any).web3 &&
+        (window as any).web3.currentProvider &&
+        (window as any).web3.currentProvider[check]
 }
 
 export function getInjectedProvider(): IProviderInfo | null {
-  let result = null;
+  let result = null
 
-  const injectedProviders = checkInjectedProviders();
+  const injectedProviders = checkInjectedProviders()
 
   if (injectedProviders.injectedAvailable) {
-    delete injectedProviders.injectedAvailable;
-    const checks = Object.keys(injectedProviders);
-    result = getProviderInfoFromChecksArray(checks);
+    delete injectedProviders.injectedAvailable
+    const checks = Object.keys(injectedProviders)
+    result = getProviderInfoFromChecksArray(checks)
   }
-  return result;
+  return result
 }
 
 export function getInjectedProviderName(): string | null {
-  const injectedProvider = getInjectedProvider();
-  return injectedProvider ? injectedProvider.name : null;
+  const injectedProvider = getInjectedProvider()
+  return injectedProvider ? injectedProvider.name : null
 }
 
 export function getProviderInfo(provider: any): IProviderInfo {
-  if (!provider) return providers.FALLBACK;
+  if (!provider) return providers.FALLBACK
   const checks = Object.values(providers)
-    .filter(x => provider[x.check])
-    .map(x => x.check);
-  return getProviderInfoFromChecksArray(checks);
+    .filter((x) => provider[x.check])
+    .map((x) => x.check)
+  return getProviderInfoFromChecksArray(checks)
 }
 
 export function getProviderInfoFromChecksArray(
   checks: string[]
 ): IProviderInfo {
-  const check = filterProviderChecks(checks);
-  return filterProviders('check', check);
+  const check = filterProviderChecks(checks)
+  return filterProviders('check', check)
 }
 
 export function getProviderInfoByName(name: string | null): IProviderInfo {
-  return filterProviders('name', name);
+  return filterProviders('name', name)
 }
 
 export function getProviderInfoById(id: string | null): IProviderInfo {
-  return filterProviders('id', id);
+  return filterProviders('id', id)
 }
 
 export function getProviderInfoByCheck(check: string | null): IProviderInfo {
-  return filterProviders('check', check);
+  return filterProviders('check', check)
 }
 
 export function isMobile(): boolean {
-  let mobile: boolean = false;
+  let mobile: boolean = false
 
   function hasTouchEvent(): boolean {
     try {
-      document.createEvent('TouchEvent');
-      return true;
+      document.createEvent('TouchEvent')
+      return true
     } catch (e) {
-      return false;
+      return false
     }
   }
 
@@ -117,42 +112,42 @@ export function isMobile(): boolean {
         navigator.userAgent.substr(0, 4)
       )
     ) {
-      return true;
+      return true
     } else if (hasTouchEvent()) {
-      return true;
+      return true
     }
-    return false;
+    return false
   }
 
-  mobile = hasMobileUserAgent();
+  mobile = hasMobileUserAgent()
 
-  return mobile;
+  return mobile
 }
 
 export function getProviderDescription(
   providerInfo: Partial<IProviderInfo>
 ): string {
   if (providerInfo.description) {
-    return providerInfo.description;
+    return providerInfo.description
   }
-  let description = '';
+  let description = ''
   switch (providerInfo.type) {
     case 'injected':
-      description = `Connect to your ${providerInfo.name} Wallet`;
-      break;
+      description = `Connect to your ${providerInfo.name} Wallet`
+      break
     case 'web':
-      description = `Connect with your ${providerInfo.name} account`;
-      break;
+      description = `Connect with your ${providerInfo.name} account`
+      break
     case 'qrcode':
-      description = `Scan with ${providerInfo.name} to connect`;
-      break;
+      description = `Scan with ${providerInfo.name} to connect`
+      break
     case 'hardware':
-      description = `Connect to your ${providerInfo.name} Hardware Wallet`;
-      break;
+      description = `Connect to your ${providerInfo.name} Hardware Wallet`
+      break
     default:
-      break;
+      break
   }
-  return description;
+  return description
 }
 
 export function filterMatches<T>(
@@ -160,27 +155,27 @@ export function filterMatches<T>(
   condition: (x: T) => boolean,
   fallback: T | undefined
 ): T | undefined {
-  let result = fallback;
-  const matches = array.filter(condition);
+  let result = fallback
+  const matches = array.filter(condition)
 
   if (!!matches && matches.length) {
-    result = matches[0];
+    result = matches[0]
   }
 
-  return result;
+  return result
 }
 
 export function filterProviders(
   param: string,
   value: string | null
 ): IProviderInfo {
-  if (!value) return providers.FALLBACK;
+  if (!value) return providers.FALLBACK
   const match = filterMatches<IProviderInfo>(
     Object.values(providers),
-    x => x[param] === value,
+    (x) => x[param] === value,
     providers.FALLBACK
-  );
-  return match || providers.FALLBACK;
+  )
+  return match || providers.FALLBACK
 }
 
 export function filterProviderChecks(checks: string[]): string {
@@ -190,40 +185,41 @@ export function filterProviderChecks(checks: string[]): string {
         checks[0] === injected.METAMASK.check ||
         checks[0] === injected.CIPHER.check
       ) {
-        return checks[1];
+        return checks[1]
       }
     }
-    return checks[0];
+    return checks[0]
   }
-  return providers.FALLBACK.check;
+  return providers.FALLBACK.check
 }
 
 export function getChainId(network: string): number {
-  const chains: ChainData[] = Object.values(CHAIN_DATA_LIST);
+  const chains: ChainData[] = Object.values(CHAIN_DATA_LIST)
   const match = filterMatches<ChainData>(
     chains,
-    x => x.network === network,
+    (x) => x.network === network,
     undefined
-  );
+  )
   if (!match) {
-    throw new Error(`No chainId found match ${network}`);
+    throw new Error(`No chainId found match ${network}`)
   }
-  return match.chainId;
+  return match.chainId
 }
+
+// export function getThemeColors(theme: string | ThemeColors): ThemeColors {
+//   return typeof theme === 'string' ? themesList[theme].colors : theme
+// }
 
 export function findMatchingRequiredOptions(
   requiredOptions: RequiredOption[],
   providedOptions: { [key: string]: any }
 ): RequiredOption[] {
-  const matches = requiredOptions.filter(requiredOption => {
+  const matches = requiredOptions.filter((requiredOption) => {
     if (typeof requiredOption === 'string') {
-      return requiredOption in providedOptions;
+      return requiredOption in providedOptions
     }
-    const matches = findMatchingRequiredOptions(
-      requiredOption,
-      providedOptions
-    );
-    return matches && matches.length;
-  });
-  return matches;
+    const matches = findMatchingRequiredOptions(requiredOption, providedOptions)
+    return matches && matches.length
+  })
+  return matches
 }
